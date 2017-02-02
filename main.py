@@ -61,7 +61,6 @@ class Highway(nn.Module):
         self.gate_layer.bias.data[:] = -2
 
         self.normal_layer = nn.Linear(input_size, input_size)
-        self.normal_layer.bias.data[:] = -2
 
     def forward(self, x):
 
