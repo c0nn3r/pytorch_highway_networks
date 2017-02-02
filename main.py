@@ -58,7 +58,10 @@ class Highway(nn.Module):
         self.activation_function = nn.ReLU()
 
         self.gate_layer = nn.Linear(input_size, input_size)
+        self.gate_layer.bias.data[:] = -2
+
         self.normal_layer = nn.Linear(input_size, input_size)
+        self.normal_layer.bias.data[:] = -2
 
     def forward(self, x):
 
