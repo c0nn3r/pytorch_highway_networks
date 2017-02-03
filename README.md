@@ -1,5 +1,5 @@
 # PyTorch Highway Networks
-Highway networks implemented in PyTorch.
+[Highway networks](https://arxiv.org/abs/1505.00387) implemented in [PyTorch](pytorch.org).
 
 ![Highway Equation](/highway.png)
 
