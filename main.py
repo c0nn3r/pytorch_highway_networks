@@ -7,6 +7,8 @@ import torch.optim as optim
 from torchvision import datasets, transforms
 from torch.autograd import Variable
 
+from highway_layers import HighwayMLP
+
 # Training settings
 parser = argparse.ArgumentParser(description='PyTorch MNIST Example')
 parser.add_argument('--batch-size', type=int, default=64, metavar='N',
@@ -49,44 +51,19 @@ test_loader = torch.utils.data.DataLoader(
     batch_size=args.batch_size, shuffle=True, **kwargs)
 
 
-class Highway(nn.Module):
-
-    def __init__(self, input_size):
-        super(Highway, self).__init__()
-
-        self.softmax = nn.Softmax()
-        self.activation_function = nn.ReLU()
-
-        self.gate_layer = nn.Linear(input_size, input_size)
-        self.gate_layer.bias.data[:] = -2
-
-        self.normal_layer = nn.Linear(input_size, input_size)
-
-    def forward(self, x):
-
-        normal_layer_result = self.activation_function(self.normal_layer(x))
-        gate_layer_result = self.softmax(self.gate_layer(x))
-
-        multiplyed_gate_and_normal = torch.mul(normal_layer_result, gate_layer_result)
-        multiplyed_gate_and_input = torch.mul((1 - gate_layer_result), x)
-
-        return torch.add(multiplyed_gate_and_normal,
-                         multiplyed_gate_and_input)
-
-
 class Model(nn.Module):
     def __init__(self, input_size, output_size):
         super(Model, self).__init__()
 
-        self.highway_1 = Highway(input_size)
-        self.highway_2 = Highway(input_size)
-        self.highway_3 = Highway(input_size)
-        self.highway_4 = Highway(input_size)
-        self.highway_5 = Highway(input_size)
-        self.highway_6 = Highway(input_size)
-        self.highway_7 = Highway(input_size)
-        self.highway_8 = Highway(input_size)
-        self.highway_9 = Highway(input_size)
+        self.highway_1 = HighwayMLP(input_size)
+        self.highway_2 = HighwayMLP(input_size)
+        self.highway_3 = HighwayMLP(input_size)
+        self.highway_4 = HighwayMLP(input_size)
+        self.highway_5 = HighwayMLP(input_size)
+        self.highway_6 = HighwayMLP(input_size)
+        self.highway_7 = HighwayMLP(input_size)
+        self.highway_8 = HighwayMLP(input_size)
+        self.highway_9 = HighwayMLP(input_size)
 
         self.softmax = nn.Softmax()
         self.linear = nn.Linear(input_size, output_size)
