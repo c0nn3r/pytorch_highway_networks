@@ -3,7 +3,7 @@
 
 ![Highway Equation](/highway.png)
 
-Just the MNIST example from PyTorch hacked to work with Highway layers.
+Just the [MNIST example](https://github.com/pytorch/examples/tree/master/mnist) from [PyTorch](pytorch.org) hacked to work with Highway layers.
 
 ## TODO
 - ~~make the Highway `nn.Module` reuseable and configurable~~
