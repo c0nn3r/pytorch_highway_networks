@@ -1,6 +1,8 @@
 # PyTorch Highway Networks
 Highway networks implemented in PyTorch.
 
+![Highway Equation](/highway.png)
+
 Just the MNIST example from PyTorch hacked to work with Highway layers.
 
 ## TODO
