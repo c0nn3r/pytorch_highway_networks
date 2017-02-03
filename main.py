@@ -27,6 +27,8 @@ parser.add_argument('--seed', type=int, default=1, metavar='S',
                     help='random seed (default: 1)')
 parser.add_argument('--log-interval', type=int, default=10, metavar='N',
                     help='how many batches to wait before logging training status')
+parser.add_argument('--highway-number', type=int, default=10, metavar='N',
+                    help='how many highway layers to use in the model')
 args = parser.parse_args()
 args.cuda = not args.no_cuda and torch.cuda.is_available()
 
@@ -55,30 +57,18 @@ class Model(nn.Module):
     def __init__(self, input_size, output_size):
         super(Model, self).__init__()
 
-        self.highway_1 = HighwayMLP(input_size)
-        self.highway_2 = HighwayMLP(input_size)
-        self.highway_3 = HighwayMLP(input_size)
-        self.highway_4 = HighwayMLP(input_size)
-        self.highway_5 = HighwayMLP(input_size)
-        self.highway_6 = HighwayMLP(input_size)
-        self.highway_7 = HighwayMLP(input_size)
-        self.highway_8 = HighwayMLP(input_size)
-        self.highway_9 = HighwayMLP(input_size)
+        self.highway_layers = []
+
+        for _ in range(args.highway_number):
+            self.highway_layers.append(HighwayMLP(input_size))
 
         self.softmax = nn.Softmax()
         self.linear = nn.Linear(input_size, output_size)
 
     def forward(self, x):
 
-        x = self.highway_1(x)
-        x = self.highway_2(x)
-        x = self.highway_3(x)
-        x = self.highway_4(x)
-        x = self.highway_5(x)
-        x = self.highway_6(x)
-        x = self.highway_7(x)
-        x = self.highway_8(x)
-        x = self.highway_9(x)
+        for h in self.highway_layers:
+            x = h(x)
 
         x = self.softmax(self.linear(x))
 
