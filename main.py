@@ -62,6 +62,10 @@ class Model(nn.Module):
         for _ in range(args.highway_number):
             self.highway_layers.append(HighwayMLP(input_size))
 
+        if args.cuda:
+            for l in self.highway_layers:
+                l.cuda()
+
         self.softmax = nn.Softmax()
         self.linear = nn.Linear(input_size, output_size)
 
