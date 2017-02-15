@@ -8,6 +8,7 @@ Just the [MNIST example](https://github.com/pytorch/examples/tree/master/mnist) 
 ## TODO
 - ~~make the Highway `nn.Module` reuseable and configurable~~
 - Why does softmax work better than sigmoid? This shouldn't be the case...
+- Make some training graphs.
 - conv highway networks
 - recurrent highway networks
 
