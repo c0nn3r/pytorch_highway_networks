@@ -7,7 +7,7 @@ class HighwayMLP(nn.Module):
     def __init__(self,
                  input_size,
                  gate_bias=-2,
-                 activation_function=nn.functional.elu()):
+                 activation_function=nn.functional.elu):
 
         super(HighwayMLP, self).__init__()
 
