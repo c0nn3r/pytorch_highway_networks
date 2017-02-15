@@ -60,13 +60,12 @@ class Model(nn.Module):
         self.highway_layers = []
 
         for _ in range(args.highway_number):
-            self.highway_layers.append(HighwayMLP(input_size, activation_function=nn.ELU()))
+            self.highway_layers.append(HighwayMLP(input_size, activation_function=nn.relu()))
 
         if args.cuda:
             for l in self.highway_layers:
                 l.cuda()
 
-        self.softmax = nn.Softmax()
         self.linear = nn.Linear(input_size, output_size)
 
     def forward(self, x):
@@ -74,7 +73,7 @@ class Model(nn.Module):
         for h in self.highway_layers:
             x = h(x)
 
-        x = self.softmax(self.linear(x))
+        x = nn.functional.softmax(self.linear(x))
 
         return x
 
