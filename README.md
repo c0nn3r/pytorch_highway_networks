@@ -1,9 +1,9 @@
 # PyTorch Highway Networks
-[Highway networks](https://arxiv.org/abs/1505.00387) implemented in [PyTorch](pytorch.org).
+[Highway networks](https://arxiv.org/abs/1505.00387) implemented in [PyTorch](http://www.pytorch.org).
 
 ![Highway Equation](images/highway.png)
 
-Just the [MNIST example](https://github.com/pytorch/examples/tree/master/mnist) from [PyTorch](pytorch.org) hacked to work with Highway layers.
+Just the [MNIST example](https://github.com/pytorch/examples/tree/master/mnist) from [PyTorch](http://www.pytorch.org) hacked to work with Highway layers.
 
 ## TODO
 - ~~make the Highway `nn.Module` reuseable and configurable~~
