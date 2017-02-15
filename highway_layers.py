@@ -21,7 +21,7 @@ class HighwayMLP(nn.Module):
     def forward(self, x):
 
         normal_layer_result = self.activation_function(self.normal_layer(x))
-        gate_layer_result = nn.functional.sigmoid(self.gate_layer(x))
+        gate_layer_result = nn.functional.softmax(self.gate_layer(x))
 
         multiplyed_gate_and_normal = torch.mul(normal_layer_result, gate_layer_result)
         multiplyed_gate_and_input = torch.mul((1 - gate_layer_result), x)
