@@ -18,7 +18,7 @@ class HighwayMLP(nn.Module):
         self.normal_layer = nn.Linear(input_size, input_size)
 
         self.gate_layer = nn.Linear(input_size, input_size)
-        self.gate_layer.bias.data[:] = gate_bias
+        self.gate_layer.bias.data.fill_(gate_bias)
 
     def forward(self, x):
 
