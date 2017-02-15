@@ -60,7 +60,7 @@ class Model(nn.Module):
         self.highway_layers = []
 
         for _ in range(args.highway_number):
-            self.highway_layers.append(HighwayMLP(input_size, activation_function=nn.relu()))
+            self.highway_layers.append(HighwayMLP(input_size, activation_function=nn.functional.relu))
 
         if args.cuda:
             for l in self.highway_layers:
