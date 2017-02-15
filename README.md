@@ -7,5 +7,10 @@ Just the [MNIST example](https://github.com/pytorch/examples/tree/master/mnist) 
 
 ## TODO
 - ~~make the Highway `nn.Module` reuseable and configurable~~
+- Why does softmax work better than sigmoid? This shouldn't be the case...
 - conv highway networks
 - recurrent highway networks
+
+## NOTES
+- ELU doesn't work better than RELU
+- softmax seems to work better than sigmoid for the gate function???
