@@ -5,13 +5,14 @@
 
 Just the [MNIST example](https://github.com/pytorch/examples/tree/master/mnist) from [PyTorch](http://www.pytorch.org) hacked to work with Highway layers.
 
-## TODO
-- ~~make the Highway `nn.Module` reuseable and configurable~~
+## Todo
+- ~~Make the Highway `nn.Module` reuseable and configurable.~~
 - Why does softmax work better than sigmoid? This shouldn't be the case...
-- Make some training graphs.
-- conv highway networks
-- recurrent highway networks
+- Make training graphs on the MNIST dataset.
+- Add convolutional highway networks.
+- Add recurrent highway networks.
+- Experiment with convolutional highway networks for character embeddings.
 
-## NOTES
-- ELU doesn't work better than RELU
-- softmax seems to work better than sigmoid for the gate function???
+## Notes
+- ELU doesn't work better than RELU for the layer activation.
+- Softmax seems to work better than sigmoid for the gate function?!
