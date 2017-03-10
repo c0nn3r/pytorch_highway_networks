@@ -70,7 +70,7 @@ class Model(nn.Module):
         for current_layer in self.highway_layers:
             x = current_layer(x)
 
-        x = nn.functional.softmax(self.linear(x))
+        x = F.softmax(self.linear(x))
 
         return x
 
