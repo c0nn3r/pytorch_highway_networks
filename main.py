@@ -1,9 +1,12 @@
-import numpy as np
-import argparse
 import torch
+import argparse
+
+import numpy as np
+
 import torch.nn as nn
-import torch.nn.functional as F
 import torch.optim as optim
+import torch.nn.functional as F
+
 from torchvision import datasets, transforms
 from torch.autograd import Variable
 
