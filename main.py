@@ -60,15 +60,8 @@ class Model(nn.Module):
     def __init__(self, input_size, output_size):
         super(Model, self).__init__()
 
-        self.highway_layers = []
-
-        for _ in range(args.highway_number):
-            if args.cuda:
-                new_layer = HighwayMLP(input_size, activation_function=nn.functional.relu).cuda()
-            else:
-                new_layer = HighwayMLP(input_size, activation_function=nn.functional.relu)
-
-            self.highway_layers.append(new_layer)
+        self.highway_layers = nn.ModuleList([HighwayMLP(input_size, activation_function=F.relu)
+                                             for _ in range(args.highway_number)])
 
         self.linear = nn.Linear(input_size, output_size)
 
