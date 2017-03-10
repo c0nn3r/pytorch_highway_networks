@@ -88,7 +88,9 @@ def train(epoch):
     for batch_idx, (data, target) in enumerate(train_loader):
         if args.cuda:
             data, target = data.cuda(), target.cuda()
-        data, target = Variable(data), Variable(target)
+        else:
+            data, target = Variable(data), Variable(target)
+
         optimizer.zero_grad()
         output = model(data)
         loss = F.nll_loss(output, target)
@@ -107,7 +109,9 @@ def test(epoch):
     for data, target in test_loader:
         if args.cuda:
             data, target = data.cuda(), target.cuda()
-        data, target = Variable(data, volatile=True), Variable(target)
+        else:
+            data, target = Variable(data, volatile=True), Variable(target)
+
         output = model(data)
         test_loss += F.nll_loss(output, target).data[0]
         pred = output.data.max(1)[1]  # get the index of the max log-probability
